@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gxa.cdut.mapper.AccountMapper">
+
+    <resultMap id="BaseResultMap" type="com.gxa.cdut.domain.Account">
+        <id property="id" jdbcType="BIGINT" column="id"/>
+        <result property="username" jdbcType="VARCHAR" column="username"/>
+        <result property="password" jdbcType="VARCHAR" column="password"/>
+        <result property="phonenumber" jdbcType="BIGINT" column="phonenumber"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="com.gxa.cdut.domain.Account" >
+        select *
+        from user
+    </select>
+    
+    
+    <insert id="insertAccount" parameterType="com.gxa.cdut.domain.Account">
+         insert into
+             user (id,username,password)
+        values (
+            #{id},
+            #{username},
+            #{password}
+        )
+    </insert>
+
+    <select id="selectAccountById" parameterType="int" resultType="com.gxa.cdut.domain.Account">
+         select *
+          from user
+           where id = #{id}
+    </select>
+
+
+      <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+            select
+                id, username, pasword, phonenumber
+            from
+                user
+            where
+                id = #{id,jdbcType=INTEGER}
+      </select>
+
+    <delete id="delectById" parameterType="int" >
+          delete
+          from user
+          where id =#{id}
+    </delete>
+
+    <update id="update" parameterType="com.gxa.cdut.domain.Account">
+           update user
+           set username=#{username},password=#{password}
+           where id=#{id}
+    </update>
+
+</mapper>
