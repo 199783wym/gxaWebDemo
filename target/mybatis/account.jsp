@@ -9,11 +9,22 @@
 <a href="insert.do">添加用户</a>
 
 
-<form action="/insert.do">
-    <input type="text" id="username" name="username">
-    <input type="password" id="password" name="password">
-    <input type="submit">
+<form action="/insert.do" id="test_form">
+    <input type="test" id="id" name="id"><br>
+    <input type="text" id="username" name="username"><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="submit" name="sub"><br>
+    <input type="button" onclick="myFunction()"value="修改">
+
+
 </form>
+<script>
+    function myFunction() {
+        document.getElementById('test_form').action = "/updateInput.do";
+        var form = document.getElementById('test_form');
+        form.submit();
+    }
+</script>
 <table border="1" style="margin: auto" width="300px">
     <tr>
         <th>编号</th>

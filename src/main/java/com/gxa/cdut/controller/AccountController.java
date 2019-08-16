@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 
 /**
@@ -62,4 +61,16 @@ public class AccountController {
         mv.addObject("accounts",list);
         return mv ;
     }
+
+    @RequestMapping("updateInput")
+    public String updateInput(int id,String password,String username){
+        Account account =new Account();
+        account.setId(id);
+        account.setUsername(username);
+        account.setPassword(password);
+        accountService.update(account);
+
+        return  "redirect:/selectAll.do";
+    }
+
 }
