@@ -22,32 +22,28 @@ public class AccountController {
     private IAccountService accountService;
 
     @RequestMapping("insert")
-    public ModelAndView insertUser(){
+    public String insertUser(String password,String username){
         Account account = new Account();
 
-        account.setUsername("wym");
-        account.setPassword("666");
+        account.setUsername(username);
+        account.setPassword(password);
 
         accountService.insertAccount(account);
-        ModelAndView mv = new ModelAndView("/account");
-        List<Account> list = accountService.selectAll();
-        mv.addObject("accounts",list);
-        return mv ;
+        return  "redirect:/selectAll.do";
+
 
     }
     @RequestMapping("delect")
-    public ModelAndView delect( @RequestParam(value="id") int id){
+    public String delect( @RequestParam(value="id") int id){
         accountService.delect(id);
 
 
-        ModelAndView mv = new ModelAndView("/account");
-        List<Account> list = accountService.selectAll();
-        mv.addObject("accounts",list);
-        return mv ;
+        return  "redirect:/selectAll.do";
+
     }
 
     @RequestMapping("update")
-    public ModelAndView update(@RequestParam(value="id") int id){
+    public String update(@RequestParam(value="id") int id){
         Account account =new Account();
         account.setId(id);
         account.setUsername("wymmmm");
@@ -55,12 +51,15 @@ public class AccountController {
         accountService.update(account);
 
 
+
+        return  "redirect:/selectAll.do";
+    }
+
+    @RequestMapping("selectAll")
+    public ModelAndView select() {
         ModelAndView mv = new ModelAndView("/account");
         List<Account> list = accountService.selectAll();
         mv.addObject("accounts",list);
         return mv ;
     }
-
-
-
 }

@@ -16,7 +16,7 @@
     </select>
     
     
-    <insert id="insertAccount" parameterType="com.gxa.cdut.domain.Account">
+    <insert id="insertAccount" parameterType="com.gxa.cdut.domain.Account" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
          insert into
              user (id,username,password)
         values (
